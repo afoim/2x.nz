@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2x.nz 导航站</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+/* =========================
+   站点配置（只改这里）
+========================= */
+const siteConfig = {
+  title: "2x.nz 导航站",
+  subtitle: "导航导航导航",
+  footer: "© 99999 2x.nz All Rights Reserved.",
+
+  links: [
+    {
+      name: "博客",
+      url: "https://blog.2x.nz",
+      desc: "发点爱发的",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      name: "AI 生图",
+      url: "https://ai.2x.nz",
+      desc: "打不开就是没开",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      name: "封面图生成",
+      url: "https://cover.2x.nz",
+      desc: "一键公式化封面",
+      color: "from-emerald-500 to-teal-500"
+    },
+    {
+      name: "赞助",
+      url: "https://donate.2x.nz",
+      desc: "给我钱",
+      color: "from-orange-500 to-red-500"
+    }
+  ]
+};
+</script>
+</head>
+
+<body class="bg-slate-950 text-white min-h-screen">
+
+<!-- 背景 -->
+<div class="fixed inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-black -z-10"></div>
+
+<!-- 主体 -->
+<div class="max-w-6xl mx-auto px-6 py-14">
+
+  <!-- 标题 -->
+  <div class="text-center mb-14">
+    <h1 id="title" class="text-5xl md:text-6xl font-bold tracking-tight"></h1>
+    <p id="subtitle" class="mt-4 text-slate-400 text-lg"></p>
+  </div>
+
+  <!-- 卡片区域 -->
+  <div id="grid" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3"></div>
+
+  <!-- Footer -->
+  <div id="footer" class="text-center text-slate-500 text-sm mt-16"></div>
+
+</div>
+
+<script>
+const title = document.getElementById("title");
+const subtitle = document.getElementById("subtitle");
+const grid = document.getElementById("grid");
+const footer = document.getElementById("footer");
+
+title.textContent = siteConfig.title;
+subtitle.textContent = siteConfig.subtitle;
+footer.textContent = siteConfig.footer;
+
+siteConfig.links.forEach(item => {
+  grid.innerHTML += `
+    <a href="${item.url}" target="_blank"
+       class="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 hover:bg-white/10 hover:scale-[1.02] transition duration-300 shadow-xl">
+       
+      <div class="w-14 h-14 rounded-xl bg-gradient-to-br ${item.color}
+                  flex items-center justify-center text-2xl font-bold shadow-lg">
+        ${item.name[0]}
+      </div>
+
+      <h2 class="mt-5 text-2xl font-semibold group-hover:text-cyan-300 transition">
+        ${item.name}
+      </h2>
+
+      <p class="mt-2 text-slate-400 leading-relaxed">
+        ${item.desc}
+      </p>
+
+      <div class="mt-5 text-sm text-cyan-400">
+        ${item.url}
+      </div>
+    </a>
+  `;
+});
+</script>
+
+</body>
+</html>
